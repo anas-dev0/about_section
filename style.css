@@ -1,0 +1,562 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  overflow-x: hidden;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+}
+
+.scroll-section {
+  position: relative;
+  height: 500vh; /* Increased from 400vh to accommodate the new section */
+}
+
+.sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.content-wrapper {
+  display: flex;
+  width: 90%;
+  max-width: 1400px;
+  gap: 60px;
+  transition: transform 1s ease;
+}
+
+/* Initial centered image setup */
+.content-wrapper.initial-state {
+  justify-content: center;
+}
+
+.image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  perspective: 1000px;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), flex 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Full screen image in initial state */
+.initial-state .image-container {
+  flex: 2;
+  transform: translateX(25%); /* Center the image when text is hidden */
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease, opacity 0.8s ease;
+}
+
+/* Enhanced image animations - removed rotation */
+.image-enter {
+  transform: scale(0.8) translateY(40px);
+  filter: brightness(0.8) blur(5px);
+  opacity: 0;
+}
+
+.image-active {
+  transform: scale(1) translateY(0);
+  filter: brightness(1) blur(0);
+  opacity: 1;
+}
+
+.image-exit {
+  transform: scale(0.8) translateY(-40px);
+  filter: brightness(0.8) blur(5px);
+  opacity: 0;
+}
+
+/* Additional class for bottom-up entrance */
+.image-enter-bottom {
+  transform: scale(0.8) translateY(-40px);
+  filter: brightness(0.8) blur(5px);
+  opacity: 0;
+}
+
+.text-container {
+  flex: 1;
+  position: relative;
+  height: 70vh;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Initially hide text container */
+.initial-state .text-container {
+  opacity: 0;
+  transform: translateX(50px);
+  pointer-events: none;
+}
+
+.text-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.text-section.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Enhanced text animations and styling with updated colors */
+.text-section H1 {
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #001d5a, #075388);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: -0.5px;
+}
+
+.text-section h2 {
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #001d5a;
+}
+
+.text-section p,
+.text-section span {
+  transform: translateY(30px);
+  opacity: 0;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 0.7s ease 0.1s;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  color: #001d5a;
+  text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.text-section.active h1,
+.text-section.active h2,
+.text-section.active p,
+.text-section.active span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Text exit animation */
+.text-section.exit h1,
+.text-section.exit h2 {
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.text-section.exit p,
+.text-section.exit span {
+  transform: translateY(-10px);
+  opacity: 0;
+  transition: transform 0.5s ease 0.05s, opacity 0.5s ease 0.05s;
+}
+
+/* Enhanced decorative line with updated colors */
+.decorative-line {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #001d5a, #d2b48c);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+  border-radius: 2px;
+  margin-top: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.text-section.active .decorative-line {
+  width: 100%;
+}
+
+.text-section.exit .decorative-line {
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+/* Strong and sup styling with updated colors */
+strong {
+  font-weight: 700;
+  color: #075388;
+}
+
+sup {
+  font-size: 60%;
+  vertical-align: super;
+}
+
+/* Trigger sections */
+.trigger {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Adding additional triggers for section entry/exit */
+.section-boundary {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50vh; /* Smaller height for more precise detection */
+}
+
+#section-start {
+  top: -50vh;
+} /* Just before the section starts */
+#section-end {
+  top: 500vh;
+} /* Just after the section ends */
+
+/* Position the triggers at specific heights */
+#trigger1 {
+  top: 0;
+}
+#trigger2 {
+  top: 100vh;
+}
+#trigger3 {
+  top: 200vh;
+}
+#trigger4 {
+  top: 300vh;
+}
+#trigger5 {
+  top: 400vh;
+} /* New trigger at 400vh */
+
+.spacer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #777;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#About_indaba {
+  background-color: #e8e0d9;
+}
+
+/* Added for better content emphasis with updated colors */
+#section1 h1:nth-child(2) {
+  font-size: 4rem;
+  margin-top: -0.5rem;
+  background: linear-gradient(135deg, #075388, #042d62);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Center the content in section5 - Enhanced */
+#section5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%; /* Ensure full height */
+  padding: 0 20px; /* Add some padding */
+}
+
+/* Make the presented-by text bigger */
+.presented-by {
+  font-size: 5rem; /* Increased from 4rem */
+  font-weight: 800;
+  margin-bottom: 4rem; /* Increased from 3rem */
+  background: linear-gradient(135deg, #001d5a, #075388);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+}
+
+/* Logos container styling - make it bigger and centered */
+.logos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7rem; /* Increased from 5rem */
+  margin-top: 4rem; /* Increased from 3rem */
+  margin-bottom: 4rem; /* Increased from 3rem */
+  width: 100%;
+}
+
+.sponsor-logo {
+  max-width: 300px; /* Increased from 250px */
+  height: auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, opacity 0.7s ease 0.3s;
+}
+
+.text-section.active .sponsor-logo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.text-section.active .sponsor-logo:nth-child(2) {
+  transition-delay: 0.5s;
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 1200px) {
+  .content-wrapper {
+    width: 95%;
+    gap: 40px;
+  }
+
+  .text-section h1 {
+    font-size: 3rem;
+  }
+
+  #section1 h1:nth-child(2) {
+    font-size: 3.5rem;
+  }
+
+  .text-section p,
+  .text-section span {
+    font-size: 1.15rem;
+  }
+
+  .presented-by {
+    font-size: 4.5rem;
+  }
+
+  .sponsor-logo {
+    max-width: 280px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .content-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 90%;
+  }
+
+  .image-container,
+  .initial-state .image-container {
+    flex: none;
+    width: 80%;
+    transform: translateX(0);
+    margin-bottom: 20px;
+  }
+
+  .text-container {
+    height: auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .text-section {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  .initial-state .text-container {
+    transform: translateY(30px);
+  }
+
+  .text-section h1 {
+    font-size: 2.5rem;
+  }
+
+  #section1 h1:nth-child(2) {
+    font-size: 3rem;
+  }
+
+  .image-container img {
+    max-height: 30vh;
+  }
+
+  .decorative-line {
+    margin: 1rem auto 0;
+  }
+
+  .presented-by {
+    font-size: 4rem;
+  }
+
+  .sponsor-logo {
+    max-width: 250px;
+  }
+
+  .logos-container {
+    gap: 5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sticky-container {
+    align-items: flex-start;
+    padding-top: 50px;
+  }
+
+  .content-wrapper {
+    width: 95%;
+  }
+
+  .text-section h1 {
+    font-size: 2rem;
+  }
+
+  #section1 h1:nth-child(2) {
+    font-size: 2.5rem;
+  }
+
+  .text-section p,
+  .text-section span {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .image-container {
+    width: 90%;
+  }
+
+  .decorative-line {
+    height: 3px;
+  }
+
+  .spacer {
+    font-size: 1.2rem;
+  }
+
+  .presented-by {
+    font-size: 3.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .logos-container {
+    gap: 4rem;
+  }
+
+  .sponsor-logo {
+    max-width: 220px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .sticky-container {
+    padding-top: 30px;
+  }
+
+  .content-wrapper {
+    width: 92%;
+  }
+
+  .text-section h1 {
+    font-size: 1.8rem;
+  }
+
+  #section1 h1:nth-child(2) {
+    font-size: 2.2rem;
+    margin-top: 0;
+  }
+
+  .text-section p,
+  .text-section span {
+    font-size: 0.95rem;
+  }
+
+  .image-container {
+    width: 95%;
+  }
+
+  .image-container img {
+    max-height: 25vh;
+  }
+
+  .spacer {
+    font-size: 1rem;
+    min-height: 70vh;
+  }
+
+  .scroll-section {
+    height: 500vh; /* Keep at 500vh */
+  }
+
+  .presented-by {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .logos-container {
+    gap: 3rem;
+    flex-direction: column;
+  }
+
+  .sponsor-logo {
+    max-width: 200px;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* For ultra-small screens */
+@media screen and (max-width: 360px) {
+  .text-section h1 {
+    font-size: 1.5rem;
+  }
+
+  #section1 h1:nth-child(2) {
+    font-size: 1.8rem;
+  }
+
+  .text-section p,
+  .text-section span {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .presented-by {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sponsor-logo {
+    max-width: 180px;
+  }
+}
+

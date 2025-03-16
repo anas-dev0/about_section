@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Scroll Animation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="spacer">Scroll Down</div>
+    <section class="scroll-section" id="About_indaba">
+        <!-- Section boundary markers for entry/exit detection -->
+        <div class="section-boundary" id="section-start" data-boundary="start"></div>
+        
+        <!-- Invisible trigger elements - positioned at specific heights -->
+        <div class="trigger" id="trigger1" data-section="section1"></div>
+        <div class="trigger" id="trigger2" data-section="section2"></div>
+        <div class="trigger" id="trigger3" data-section="section3"></div>
+        <div class="trigger" id="trigger4" data-section="section4"></div>
+        <div class="trigger" id="trigger5" data-section="section5"></div>
+        
+        <!-- Section end boundary -->
+        <div class="section-boundary" id="section-end" data-boundary="end"></div>
+        
+        <!-- Sticky container that holds both image and text -->
+        <div class="sticky-container">
+            <div class="content-wrapper initial-state">
+                <div class="image-container">
+                    <img id="featured-image" src="./assests/white_logo.png" alt="Featured image" class="image-enter">
+                </div>
+                
+                <div class="text-container">
+                    <div class="text-section" id="section1">
+                        <H1>About</H1>
+                        <H1>IndabaX 2025</H1>
+                        <div class="decorative-line"></div>
+                    </div>
+                    
+                    <div class="text-section" id="section2">
+                        <p>IndabaX Tunisia is a local chapter of the Deep Learning Indaba, bringing together professionals and AI enthusiasts to connect, share ideas, and explore the latest advancements in Artificial Intelligence.</p>
+                        <div class="decorative-line"></div>
+                    </div>
+                    
+                    <div class="text-section" id="section3">
+                        <p>This two-day event offers attendees an immersive experience with inspiring keynote talks, interactive workshops, and an intense 20-hour hackathon.</p>
+                        <div class="decorative-line"></div>
+                    </div>
+                    
+                    <div class="text-section" id="section4">
+                        <span id="test2">For its <strong>5<sup>th</sup> edition,</strong> the IEEE Sup'Com Student Branch is organizing this event to exceed expectations, providing valuable opportunities to grow your network and enhance your expertise in Artificial Intelligence.
+                        </span>
+                        <div class="decorative-line"></div>
+                    </div>
+                    
+                    <div class="text-section" id="section5">
+                        <h1 class="presented-by">Presented to you by</h1>
+                        <div class="logos-container">
+                            <img src="./assests/IEEE.png" alt="IEEE Logo" class="sponsor-logo">
+                            <img src="./assests/Instadeep.png" alt="Instadeep Logo" class="sponsor-logo">
+                        </div>
+                        <div class="decorative-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="spacer">Scroll Up</div>
+    <script src="script.js"></script>
+</body>
+</html>
+
