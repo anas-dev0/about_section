@@ -233,19 +233,14 @@ document.addEventListener("DOMContentLoaded", () => {
               document.getElementById(newSectionId).classList.add("active")
 
               // Special handling for section5
-              if (newSectionId === "section5") {
-                // Hide the main image for section5
-                featuredImage.style.opacity = "0"
-              } else {
-                // Show the main image for other sections
-                featuredImage.style.opacity = "1"
+              // For all sections, ensure the main logo is visible
+                featuredImage.style.opacity = "1";
 
                 // Image animation back to active
                 setTimeout(() => {
-                  featuredImage.style.transform = ""
-                  featuredImage.classList.add("image-active")
-                }, 50)
-              }
+                  featuredImage.style.transform = "";
+                  featuredImage.classList.add("image-active");
+                }, 50);
             }, 500)
           }
         }
@@ -276,21 +271,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to activate a specific section
   function activateSection(sectionId) {
     textSections.forEach((section) => {
-      section.classList.remove("active", "exit")
-    })
-    document.getElementById(sectionId).classList.add("active")
-    currentSection = sectionId
-
-    // Special handling for section5
-    if (sectionId === "section5") {
-      // Hide the main image for section5
-      featuredImage.style.opacity = "0"
-    } else {
-      // For other sections, ensure the main logo is visible
-      featuredImage.classList.remove("image-exit")
-      featuredImage.classList.add("image-active")
-      featuredImage.style.opacity = "1"
-    }
+      section.classList.remove("active", "exit");
+    });
+    document.getElementById(sectionId).classList.add("active");
+    currentSection = sectionId;
+  
+    // For all sections, ensure the main logo is visible
+    featuredImage.classList.remove("image-exit");
+    featuredImage.classList.add("image-active");
+    featuredImage.style.opacity = "1";
   }
 
   // Observer for boundary detection (still helpful for specific section transitions)

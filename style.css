@@ -138,17 +138,6 @@ body {
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   letter-spacing: -0.5px;
 }
-
-.text-section h2 {
-  transform: translateY(40px);
-  opacity: 0;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  color: #001d5a;
-}
-
 .text-section p,
 .text-section span {
   transform: translateY(30px);
@@ -211,7 +200,7 @@ body {
 /* Strong and sup styling with updated colors */
 strong {
   font-weight: 700;
-  color: #075388;
+  color: #d2b48c;
 }
 
 sup {
@@ -368,7 +357,7 @@ sup {
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
   .content-wrapper {
     flex-direction: column;
     align-items: center;
@@ -428,7 +417,7 @@ sup {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
   .sticky-container {
     align-items: flex-start;
     padding-top: 50px;
@@ -454,6 +443,7 @@ sup {
 
   .image-container {
     width: 90%;
+    margin-bottom: 10vh;
   }
 
   .decorative-line {
@@ -475,6 +465,12 @@ sup {
 
   .sponsor-logo {
     max-width: 220px;
+  }
+  #section5 {
+    padding-top: 15vh; /* Push section 5 content down */
+  }
+  #section5.active ~ .image-container img {
+    max-height: 20vh; /* Make the image smaller in section 5 on mobile */
   }
 }
 
@@ -503,6 +499,7 @@ sup {
 
   .image-container {
     width: 95%;
+    margin-bottom: 15vh;
   }
 
   .image-container img {
@@ -531,6 +528,9 @@ sup {
   .sponsor-logo {
     max-width: 200px;
     margin-bottom: 1.5rem;
+  }
+  #section5 {
+    padding-top: 18vh;
   }
 }
 
